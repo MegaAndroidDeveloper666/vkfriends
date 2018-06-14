@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import adapters.PhotosPagerAdapter;
 import cz.msebera.android.httpclient.Header;
 import data.DBHelper;
+import data.VKAccount;
 
 // Активити для отображения информации о друге и его фотографий
 public class FriendActivity extends AppCompatActivity {
@@ -113,6 +114,7 @@ public class FriendActivity extends AppCompatActivity {
         RequestParams params = new RequestParams();
         params.add("v", "5.62");
         params.add("album_id", "profile");
+        params.add("access_token", VKAccount.getInstance(getApplicationContext()).getToken());
         params.add("rev", "1");
         params.add("owner_id", "" + id);
         client.get("https://api.vk.com/method/photos.get", params, new AsyncHttpResponseHandler() {
